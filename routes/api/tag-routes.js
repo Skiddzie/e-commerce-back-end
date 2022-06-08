@@ -14,13 +14,12 @@ router.get('/', (req, res) => {
 // find a single tag by its `id`
 // be sure to include its associated Product data
 router.get('/:id', (req, res) => {
-  Tag.findOne(req.body, {
+  Tag.findOne({
     where: {
       id: req.params.id,
+      // include:[ProductTag]
     },
-  }).then((tag) => {
-    res.status(201).json(tag);
-  })
+  }).then(tag => res.json({tag}));
 });
 
 router.post('/', (req, res) => {
